@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <link rel="stylesheet" href="{{ url('frontend/assets/css/awesome.min.css') }}">
 
@@ -40,7 +42,8 @@
                 <div class="top-bar-contact d-flex align-items-center">
                     <ul class="d-flex align-items-center">
                         <li><a href="tel:+92 3212771497"><i class="fa-solid fa-phone"></i>+92 3212771497</a></li>
-                        <li><a href="mailto:fatimakanwal490@gmail.com"><i class="fa-regular fa-envelope"></i>ForeverModest@gmail.com</a></li>
+                        <li><a href="mailto:fatimakanwal490@gmail.com"><i
+                                    class="fa-regular fa-envelope"></i>ForeverModest@gmail.com</a></li>
                         <li><a href=""><i class="fa-sharp fa-solid fa-location-dot"></i>Locate Our Shop</a></li>
                     </ul>
                 </div>
@@ -63,46 +66,46 @@
                             </ul>
                         </li>
                     </ul>
-                    
+
                     <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        // Function to update currency selection
-                        function updateCurrency(currency) {
-                            localStorage.setItem("selectedCurrency", currency);
-                            document.getElementById("selected-currency").innerHTML = currency + ' <i class="fa-solid fa-angle-down"></i>';
-                            // Call a function here to update prices if necessary
-                        }
-                    
-                        // Function to update language selection
-                        function updateLanguage(language) {
-                            localStorage.setItem("selectedLanguage", language);
-                            document.getElementById("selected-language").innerHTML = language + ' <i class="fa-solid fa-angle-down"></i>';
-                            // You can reload the page or update the language dynamically here
-                        }
-                    
-                        // Load stored values
-                        let storedCurrency = localStorage.getItem("selectedCurrency");
-                        let storedLanguage = localStorage.getItem("selectedLanguage");
-                    
-                        if (storedCurrency) updateCurrency(storedCurrency);
-                        if (storedLanguage) updateLanguage(storedLanguage);
-                    
-                        // Event listeners for currency selection
-                        document.querySelectorAll(".forevermodest-currency a").forEach(item => {
-                            item.addEventListener("click", function (e) {
-                                e.preventDefault();
-                                updateCurrency(this.getAttribute("data-currency"));
+                        document.addEventListener("DOMContentLoaded", function () {
+                            // Function to update currency selection
+                            function updateCurrency(currency) {
+                                localStorage.setItem("selectedCurrency", currency);
+                                document.getElementById("selected-currency").innerHTML = currency + ' <i class="fa-solid fa-angle-down"></i>';
+                                // Call a function here to update prices if necessary
+                            }
+
+                            // Function to update language selection
+                            function updateLanguage(language) {
+                                localStorage.setItem("selectedLanguage", language);
+                                document.getElementById("selected-language").innerHTML = language + ' <i class="fa-solid fa-angle-down"></i>';
+                                // You can reload the page or update the language dynamically here
+                            }
+
+                            // Load stored values
+                            let storedCurrency = localStorage.getItem("selectedCurrency");
+                            let storedLanguage = localStorage.getItem("selectedLanguage");
+
+                            if (storedCurrency) updateCurrency(storedCurrency);
+                            if (storedLanguage) updateLanguage(storedLanguage);
+
+                            // Event listeners for currency selection
+                            document.querySelectorAll(".forevermodest-currency a").forEach(item => {
+                                item.addEventListener("click", function (e) {
+                                    e.preventDefault();
+                                    updateCurrency(this.getAttribute("data-currency"));
+                                });
+                            });
+
+                            // Event listeners for language selection
+                            document.querySelectorAll(".forevermodest-language a").forEach(item => {
+                                item.addEventListener("click", function (e) {
+                                    e.preventDefault();
+                                    updateLanguage(this.getAttribute("data-lang"));
+                                });
                             });
                         });
-                    
-                        // Event listeners for language selection
-                        document.querySelectorAll(".forevermodest-language a").forEach(item => {
-                            item.addEventListener("click", function (e) {
-                                e.preventDefault();
-                                updateLanguage(this.getAttribute("data-lang"));
-                            });
-                        });
-                    });
                     </script>
                     <ul class="social-icon d-flex align-items-center">
                         <li><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -128,7 +131,7 @@
                             max-width: 400px;
                             margin: 0 auto;
                         }
-                    
+
                         .search-product {
                             width: 100%;
                             background: #f8f9fa;
@@ -139,7 +142,7 @@
                             align-items: center;
                             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
                         }
-                    
+
                         .search-product input {
                             flex: 1;
                             border: none;
@@ -148,7 +151,7 @@
                             font-size: 16px;
                             padding-left: 10px;
                         }
-                    
+
                         .search-product button {
                             background: #ff6f61;
                             border: none;
@@ -161,16 +164,16 @@
                             cursor: pointer;
                             transition: 0.3s ease;
                         }
-                    
+
                         .search-product button i {
                             color: #fff;
                             font-size: 18px;
                         }
-                    
+
                         .search-product button:hover {
                             background: #ff3f3f;
                         }
-                    
+
                         /* Responsive Design */
                         @media (max-width: 768px) {
                             .forevermodest-search-form {
@@ -178,16 +181,17 @@
                             }
                         }
                     </style>
-                    
+
                     <div class="forevermodest-search-form">
-                        <form class="search-product" id="search-product" action="{{url('single-product')}}" method="GET">
+                        <form class="search-product" id="search-product" action="{{url('single-product')}}"
+                            method="GET">
                             <input type="text" name="query" placeholder="Search for products...">
                             <button type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </form>
                     </div>
-                    
+
                     <div class="inner-wrapper">
                         <ul class="d-flex align-items-center">
                             <li class="search-popup">
@@ -210,8 +214,7 @@
                             </li>
                             <li>
                                 <a class="log-in header-popup log-in-btn d-flex align-items-center" id="header-popup1"
-                                    href="#"><span class="log-in-text">log in</span><i
-                                        class="fa-solid fa-user"></i></a>
+                                    href="#"><span class="log-in-text">log in</span><i class="fa-solid fa-user"></i></a>
                                 <div class="popup-wraper1">
                                     <div class="view-popup">
                                         <label class="close-btn fas fa-times popup-label"></label>
@@ -221,51 +224,45 @@
 
                                             <!-- Email Field -->
                                             <div class="mb-2">
-                                                <label for="email" class="form-label" style="font-size: 14px;">Email:</label>
-                                                <input
-                                                    type="email"
-                                                    class="form-control form-control-sm"
-                                                    id="email"
-                                                    name="email"
-                                                    required
-                                                    style="font-size: 14px; padding: 5px;">
+                                                <label for="email" class="form-label"
+                                                    style="font-size: 14px;">Email:</label>
+                                                <input type="email" class="form-control form-control-sm" id="email"
+                                                    name="email" required style="font-size: 14px; padding: 5px;">
                                                 @if ($errors->has('email'))
-                                                    <span class="text-danger" style="font-size: 12px;">{{ $errors->first('email') }}</span>
+                                                    <span class="text-danger"
+                                                        style="font-size: 12px;">{{ $errors->first('email') }}</span>
                                                 @endif
                                             </div>
 
                                             <!-- Password Field -->
                                             <div class="mb-2">
-                                                <label for="password" class="form-label" style="font-size: 14px;">Password:</label>
-                                                <input
-                                                    type="password"
-                                                    class="form-control form-control-sm"
-                                                    id="password"
-                                                    name="password"
-                                                    required
+                                                <label for="password" class="form-label"
+                                                    style="font-size: 14px;">Password:</label>
+                                                <input type="password" class="form-control form-control-sm"
+                                                    id="password" name="password" required
                                                     style="font-size: 14px; padding: 5px;">
                                                 @if ($errors->has('password'))
-                                                    <span class="text-danger" style="font-size: 12px;">{{ $errors->first('password') }}</span>
+                                                    <span class="text-danger"
+                                                        style="font-size: 12px;">{{ $errors->first('password') }}</span>
                                                 @endif
                                             </div>
 
                                             <!-- Remember Me Checkbox and Forgot Password Link -->
-                                            <div class="d-flex justify-content-between align-items-center mb-2" style="font-size: 12px;">
+                                            <div class="d-flex justify-content-between align-items-center mb-2"
+                                                style="font-size: 12px;">
                                                 <div class="d-flex align-items-center">
-                                                    <input
-                                                        type="checkbox"
-                                                        class="form-check-input"
-                                                        id="remember"
-                                                        name="remember"
-                                                        style="width: 17px; height: 22px;">
+                                                    <input type="checkbox" class="form-check-input" id="remember"
+                                                        name="remember" style="width: 17px; height: 22px;">
                                                     <label for="remember" class="ms-1">Remember me</label>
                                                 </div>
-                                                <a href="{{ route('password.request') }}" class="text-decoration-none" style="font-size: 12px;">Forgot password?</a>
+                                                <a href="{{ route('password.request') }}" class="text-decoration-none"
+                                                    style="font-size: 12px;">Forgot password?</a>
                                             </div>
 
                                             <!-- Submit Button -->
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-warning text-white" style="font-size: 14px; padding: 5px 10px;">LOGIN</button>
+                                                <button type="submit" class="btn btn-warning text-white"
+                                                    style="font-size: 14px; padding: 5px 10px;">LOGIN</button>
                                             </div>
                                         </form>
 
@@ -287,67 +284,58 @@
 
                                             <!-- Username Field -->
                                             <div class="mb-2">
-                                                <label for="username" class="form-label" style="font-size: 14px;">Username:</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control form-control-sm"
-                                                    id="username"
-                                                    name="username"
-                                                    required
-                                                    style="font-size: 14px; padding: 5px;">
+                                                <label for="username" class="form-label"
+                                                    style="font-size: 14px;">Username:</label>
+                                                <input type="text" class="form-control form-control-sm" id="username"
+                                                    name="username" required style="font-size: 14px; padding: 5px;">
                                                 @if ($errors->has('username'))
-                                                    <span class="text-danger" style="font-size: 12px;">{{ $errors->first('username') }}</span>
+                                                    <span class="text-danger"
+                                                        style="font-size: 12px;">{{ $errors->first('username') }}</span>
                                                 @endif
                                             </div>
 
                                             <!-- Email Field -->
                                             <div class="mb-2">
-                                                <label for="email" class="form-label" style="font-size: 14px;">Email:</label>
-                                                <input
-                                                    type="email"
-                                                    class="form-control form-control-sm"
-                                                    id="email"
-                                                    name="email"
-                                                    required
-                                                    style="font-size: 14px; padding: 5px;">
+                                                <label for="email" class="form-label"
+                                                    style="font-size: 14px;">Email:</label>
+                                                <input type="email" class="form-control form-control-sm" id="email"
+                                                    name="email" required style="font-size: 14px; padding: 5px;">
                                                 @if ($errors->has('email'))
-                                                    <span class="text-danger" style="font-size: 12px;">{{ $errors->first('email') }}</span>
+                                                    <span class="text-danger"
+                                                        style="font-size: 12px;">{{ $errors->first('email') }}</span>
                                                 @endif
                                             </div>
 
                                             <!-- Password Field -->
                                             <div class="mb-2">
-                                                <label for="password" class="form-label" style="font-size: 14px;">Password:</label>
-                                                <input
-                                                    type="password"
-                                                    class="form-control form-control-sm"
-                                                    id="password"
-                                                    name="password"
-                                                    required
+                                                <label for="password" class="form-label"
+                                                    style="font-size: 14px;">Password:</label>
+                                                <input type="password" class="form-control form-control-sm"
+                                                    id="password" name="password" required
                                                     style="font-size: 14px; padding: 5px;">
                                                 @if ($errors->has('password'))
-                                                    <span class="text-danger" style="font-size: 12px;">{{ $errors->first('password') }}</span>
+                                                    <span class="text-danger"
+                                                        style="font-size: 12px;">{{ $errors->first('password') }}</span>
                                                 @endif
                                             </div>
 
                                             <!-- Confirm Password Field -->
                                             <div class="mb-2">
-                                                <label for="password_confirmation" class="form-label" style="font-size: 14px;">Confirm Password:</label>
-                                                <input
-                                                    type="password"
-                                                    class="form-control form-control-sm"
-                                                    id="password_confirmation"
-                                                    name="password_confirmation"
-                                                    required
+                                                <label for="password_confirmation" class="form-label"
+                                                    style="font-size: 14px;">Confirm Password:</label>
+                                                <input type="password" class="form-control form-control-sm"
+                                                    id="password_confirmation" name="password_confirmation" required
                                                     style="font-size: 14px; padding: 5px;">
                                                 @if ($errors->has('password_confirmation'))
-                                                    <span class="text-danger" style="font-size: 12px;">{{ $errors->first('password_confirmation') }}</span>
+                                                    <span class="text-danger"
+                                                        style="font-size: 12px;">{{ $errors->first('password_confirmation') }}</span>
                                                 @endif
                                             </div>
 
                                             <!-- Submit Button -->
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-warning text-white" style="font-size: 14px; padding: 5px 10px;">SIGN UP</button>
+                                                <button type="submit" class="btn btn-warning text-white"
+                                                    style="font-size: 14px; padding: 5px 10px;">SIGN UP</button>
                                             </div>
                                         </form>
 
@@ -356,48 +344,57 @@
                             </li>
                             <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
                             <li class="product-cart">
-                                <a href="#" class="cart-icon" id="toggleButton"><i
-                                        class="fa-solid fa-cart-shopping"></i><span class="cart-number">0</span></a>
+                                <a href="#" class="cart-icon" id="toggleButton">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <span class="cart-number">0</span>
+                                </a>
+
                                 <div class="view-cart content" id="content">
                                     <div class="cart-title d-flex align-items-center justify-content-between">
-                                        <span class="product-item">1 ITEM</span>
-                                        <a href="{{ url('shopping-cart') }}">View cart</a>
+                                        <span class="product-item">0 ITEM</span>
+                                        <a href="{{ url('shopping-cart') }}"></a>
                                     </div>
-                                    <div class="product-item d-flex justify-content-between">
-                                        <div class="product-inner">
-                                            <a href="#" class="d-block">Brown Bag</a>
-                                            <span>1*199.00</span>
-                                        </div>
-                                        <div class="product-img">
-                                            <img src="{{ url('frontend/assets/images/header/cart/shape-1.png') }}"
-                                                alt="header">
-                                            <a href="#">
-                                                <span><i class="fa-solid fa-x"></i></span>
-                                            </a>
-                                        </div>
+
+                                    <div id="cart-items">
+                                        <!-- Dynamic products will be injected here -->
                                     </div>
-                                    <div class="product-item d-flex justify-content-between">
-                                        <div class="product-inner">
-                                            <a href="#" class="d-block">Brown Bag</a>
-                                            <span>1*199.00</span>
-                                        </div>
-                                        <div class="product-img">
-                                            <img src="{{ url('frontend/assets/images/header/cart/shape-2.png') }}"
-                                                alt="header">
-                                            <a href="#">
-                                                <span><i class="fa-solid fa-x"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
+
                                     <div class="sub-total d-flex align-items-center justify-content-between">
                                         <span>Subtotal:</span>
-                                        <span>$199.00</span>
+                                        <span id="subtotal-amount">$0.00</span>
                                     </div>
-                                    <div class="popup-btn">
-                                        <a href="#" class="popup-link">Checkout</a>
-                                    </div>
+
+                                  <!-- Checkout Button -->
+<div class="popup-btn">
+    <a href="#" class="popup-link" onclick="openCheckoutModal()">Checkout</a>
+</div>
+
+<!-- Checkout Modal (Hidden by default) -->
+<div id="checkoutModal" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); background: white; border-radius: 10px; width: 500px; padding: 20px; box-shadow: 0px 5px 15px rgba(0,0,0,0.3); z-index: 9999;">
+    <h2 style="text-align:center;">Your Cart Summary</h2>
+    <hr>
+
+    <div id="cartItems"></div>
+
+    <hr>
+    <div style="display:flex; justify-content: space-between; font-weight: bold;">
+        <div>Total Amount:</div>
+        <div id="totalAmount">$0</div>
+    </div>
+
+    <div style="text-align:center; margin-top: 20px;">
+        <button onclick="proceedToPayment()" style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Proceed to Payment</button>
+        <br><br>
+        <button onclick="closeCheckoutModal()" style="background: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 5px;">Close</button>
+    </div>
+</div>
+
+<!-- Modal Background -->
+<div id="modalBackground" style="display:none; position: fixed; top: 0; left: 0; height:100%; width:100%; background: rgba(0,0,0,0.5); z-index: 9998;" onclick="closeCheckoutModal()"></div>
+
                                 </div>
                             </li>
+
                         </ul>
                     </div>
                 </div>
@@ -519,7 +516,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    
+
                                     <li>
                                         <a href="{{ url('contact') }}">Contact</a>
                                     </li>
@@ -533,11 +530,180 @@
                                 <span></span>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </header>
+
+    <script>
+
+
+    function updateCartUI() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartNumber = document.querySelector('.cart-number');
+        const subtotalAmount = document.getElementById('subtotal-amount');
+        const cartTitleItem = document.querySelector('.cart-title .product-item');
+
+        cartItemsContainer.innerHTML = '';
+        let subtotal = 0;
+
+        cart.forEach((item, index) => {
+            subtotal += parseFloat(item.price) * item.quantity;
+
+            const productItem = document.createElement('div');
+            productItem.classList.add('product-item', 'd-flex', 'justify-content-between');
+            productItem.innerHTML = `
+                <div class="product-inner">
+                    <a href="#" class="d-block">${item.title}</a>
+                    <span>${item.quantity} * $${item.price}</span>
+                </div>
+                <div class="product-img">
+                    <img src="${item.image}" alt="${item.title}">
+                    <a href="#" onclick="removeCartItem(${index})">
+                        <span><i class="fa-solid fa-x"></i></span>
+                    </a>
+                </div>
+            `;
+
+            cartItemsContainer.appendChild(productItem);
+        });
+
+        cartNumber.innerText = cart.length;
+        subtotalAmount.innerText = `$${subtotal.toFixed(2)}`;
+        cartTitleItem.innerText = `${cart.length} ITEM${cart.length !== 1 ? 'S' : ''}`;
+    }
+
+    function removeCartItem(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartUI();
+    }
+
+    // Update cart UI when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartUI();
+    });
+</script>
+
+<script>
+function increment(id) {
+    var input = document.getElementById('quantity' + id);
+    input.value = parseInt(input.value) + 1;
+}
+
+function decrement(id) {
+    var input = document.getElementById('quantity' + id);
+    if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+    }
+}
+</script>
+
+<script>
+// Simulated Cart Data (Later you can load this dynamically from your session or backend)
+const cart = [
+    { id: 1, name: "Product 1", price: 29.99, quantity: 2 },
+    { id: 2, name: "Product 2", price: 19.99, quantity: 1 },
+    { id: 3, name: "Product 3", price: 9.99, quantity: 3 },
+];
+
+// Open Checkout Modal
+function openCheckoutModal() {
+    renderCartItems();
+    document.getElementById('checkoutModal').style.display = 'block';
+    document.getElementById('modalBackground').style.display = 'block';
+}
+
+// Close Checkout Modal
+function closeCheckoutModal() {
+    document.getElementById('checkoutModal').style.display = 'none';
+    document.getElementById('modalBackground').style.display = 'none';
+}
+
+// Render Cart Items in Modal
+function renderCartItems() {
+    const cartItemsContainer = document.getElementById('cartItems');
+    cartItemsContainer.innerHTML = '';
+
+    let total = 0;
+
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        cartItemsContainer.innerHTML += `
+            <div style="display:flex; justify-content:space-between; margin:10px 0;">
+                <div>
+                    <strong>${item.name}</strong><br>
+                    Quantity: ${item.quantity}
+                </div>
+                <div style="text-align:right;">
+                    $${item.price.toFixed(2)} x ${item.quantity} <br>
+                    <strong>$${itemTotal.toFixed(2)}</strong>
+                </div>
+            </div>
+        `;
+    });
+
+    document.getElementById('totalAmount').innerText = `$${total.toFixed(2)}`;
+}
+
+// Proceed to Payment (Example function)
+function proceedToPayment() {
+    // Confirm with the user
+    if (confirm('Are you sure you want to place the order with Cash on Delivery?')) {
+
+        // Prepare the order data
+        const orderData = {
+            payment_method: 'cash_on_delivery',
+            cart: cart, // cart array from earlier
+            total_amount: calculateTotalAmount(),
+        };
+
+        // Send the order to server using AJAX (fetch)
+        fetch('/place-order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCSRFToken(), // important in Laravel
+            },
+            body: JSON.stringify(orderData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Order placed successfully!');
+                // Redirect to thank you page
+                window.location.href = '/thank-you';
+            } else {
+                alert('Something went wrong: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error placing order:', error);
+            alert('An error occurred while placing the order.');
+        });
+
+    } else {
+        alert('Order cancelled.');
+    }
+}
+
+// Helper function to calculate total amount
+function calculateTotalAmount() {
+    return cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2);
+}
+
+// Helper function to get CSRF Token (important for Laravel POST)
+function getCSRFToken() {
+    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+}
+
+</script>
+
 
     <!-- HEADER-SECTION END  -->

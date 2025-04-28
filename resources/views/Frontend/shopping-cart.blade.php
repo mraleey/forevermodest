@@ -2,203 +2,162 @@
 @section('title', 'Home')
 @section('main-container')
 
-<!-- BANNER-SECTION START  -->
-
-<section class="hero-section ev-common-hero" style="background-image: "{{url("frontend/assets/images/common-banner/shape-1.png" )}}"> 
+<!-- BANNER-SECTION START -->
+<section class="hero-section ev-common-hero" style="background-image: url('{{ url('frontend/assets/images/common-banner/shape-1.png') }}')">
     <div class="container-fluid">
           <div class="ev-hero-content">
             <h2>Shopping Cart</h2>
-            <span><a href="{{url('index')}}">Home</a> <a href="{{url('shop')}}">Shop</a> > Single</span>
+            <span><a href="{{ route('home') }}">Home</a> <a href="{{ route('shop') }}">Shop</a> > Single</span>
           </div>
     </div>
 </section>
+<!-- BANNER-SECTION END -->
 
-<!-- BANNER-SECTION END  -->
-
-
-<!-- `SHOPPING-CART-SECTION START  -->
-
-
+<!-- SHOPPING-CART-SECTION START -->
 <section class="wishlist-section shopping-section">
     <div class="container">
         <div class="wishlist-item">
             <h5>Your Cart Items</h5>
             <div class="wishlist-table">
-                <table class="table-wrapper">
-                    <thead class="t-head">
-                      <tr>
-                        <th><span>Item Name</span></th>
-                        <th><span>Price</span></th>
-                        <th><span>Quantity</span></th>
-                        <th><span>Total</span></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody class="t-body">
-                      <tr class="wishlist-tr">
-                        <td class="d-lg-flex d-lg-block align-items-center">
-                            <a href="{{url('single-product')}}">
-                                <img src="{{url("frontend/assets/images/shopping-cart/shape-1.png" )}}"  alt="shopping">
-                            </a>
-                            <h2><a href="{{url('single-product')}}">Tritan steel water bottle</a></h2>
-                        </td>
-                        <td><span>$42.00</span></td>
-                        <td>
-                            <div class="pro-counter d-flex align-items-center justify-content-between">
-                                <button onclick="decrement('quantity1')" class="counter-button">-</button>
-                                <input type="number" class="counter-input" id="quantity1" value="0" min="0" readonly>
-                                <button onclick="increment('quantity1')" class="counter-button">+</button>
-                            </div>
-                        </td>
-                        <td><span class="cart-total">$42.00</span></td>
-                        <td>
-                            <a href="#" class="cart-btn"><i class="fa-solid fa-xmark"></i></a>
-                        </td>
-                      </tr>
-                      <tr class="wishlist-tr">
-                        <td class="d-lg-flex d-lg-block align-items-center">
-                            <a href="{{url('single-product')}}">
-                                <img src="{{url("frontend/assets/images/shopping-cart/shape-2.png" )}}"  alt="shopping">
-                            </a>
-                            <h2><a href="{{url('single-product')}}">Ray Ban fashion sunglass</a></h2>
-                        </td>
-                        <td><span>$93.00</span></td>
-                        <td>
-                            <div class="pro-counter d-flex align-items-center justify-content-between">
-                                <button onclick="decrement('quantity2')" class="counter-button">-</button>
-                                <input type="number" class="counter-input" id="quantity2" value="0" min="0" readonly>
-                                <button onclick="increment('quantity2')" class="counter-button">+</button>
-                            </div>
-                        </td>
-                        <td><span class="cart-total">$93.00</span></td>
-                        <td>
-                            <ul class="product-cart d-flex align-items-center justify-content-between">
-                                <li><a href="#" class="cart-btn"><i class="fa-solid fa-xmark"></i></a></li>
-                            </ul>
-                        </td>
-                      </tr>
-                      <tr class="wishlist-tr">
-                        <td class="d-lg-flex d-lg-block align-items-center">
-                            <a href="{{url('single-product')}}">
-                                <img src="{{url("frontend/assets/images/shopping-cart/shape-3.png" )}}"  alt="shopping">
-                            </a>
-                            <h2><a href="{{url('single-product')}}">Mens fashion running shoes</a></h2>
-                        </td>
-                        <td><span>$48.00</span></td>
-                        <td>
-                            <div class="pro-counter d-flex align-items-center justify-content-between">
-                                <button onclick="decrement('quantity3')" class="counter-button">-</button>
-                                <input type="number" class="counter-input" id="quantity3" value="0" min="0" readonly>
-                                <button onclick="increment('quantity3')" class="counter-button">+</button>
-                            </div>
-                        </td>
-                        <td><span class="cart-total">$48.00</span></td>
-                        <td>
-                            <a href="#" class="cart-btn"><i class="fa-solid fa-xmark"></i></a>
-                        </td>
-                      </tr>
-                    </tbody>
-                </table>
-            </div>
-              <div class="shoping-cart-btn d-md-flex d-md-block align-items-center justify-content-md-between justify-content-md-start">
-                <div class="shoping-cart-btn-left">
-                    <div class="checkout-text">
-                        <div class="btn_box shoping-btn">
-                            <a href="#">Continue Shopping</a>
+                <form action="{{ route('cart.update') }}" method="POST">
+                    @csrf
+                    <table class="table-wrapper">
+                        <thead class="t-head">
+                          <tr>
+                            <th><span>Item Name</span></th>
+                            <th><span>Price</span></th>
+                            <th><span>Quantity</span></th>
+                            <th><span>Total</span></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody class="t-body">
+                          @foreach($cartItems as $item)
+                          <tr class="wishlist-tr">
+                            <td class="d-lg-flex d-lg-block align-items-center">
+                                <a href="{{ route('single-product', $item->id) }}">
+                                    <img src="{{ url('storage/'.$item->image) }}" alt="shopping">
+                                </a>
+                                <h2><a href="{{ route('single-product', $item->id) }}">{{ $item->name }}</a></h2>
+                            </td>
+                            <td><span>${{ number_format($item->price, 2) }}</span></td>
+                            <td>
+                                <div class="pro-counter d-flex align-items-center justify-content-between">
+                                    <button type="button" onclick="decrement('{{ $item->id }}')" class="counter-button">-</button>
+                                    <input type="number" name="quantities[{{ $item->id }}]" class="counter-input" id="quantity{{ $item->id }}" value="{{ $item->quantity }}" min="1" readonly>
+                                    <button type="button" onclick="increment('{{ $item->id }}')" class="counter-button">+</button>
+                                </div>
+                            </td>
+                            <td><span class="cart-total">${{ number_format($item->price * $item->quantity, 2) }}</span></td>
+                            <td>
+                                <a href="{{ route('cart.remove', $item->id) }}" class="cart-btn"><i class="fa-solid fa-xmark"></i></a>
+                            </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                    </table>
+
+                    <div class="shoping-cart-btn d-md-flex d-md-block align-items-center justify-content-md-between justify-content-md-start mt-4">
+                        <div class="shoping-cart-btn-left">
+                            <div class="checkout-text">
+                                <div class="btn_box shoping-btn">
+                                    <a href="{{ route('shop') }}">Continue Shopping</a>
+                                </div>
+                            </div>    
                         </div>
-                    </div>    
-                </div>
-                <div class="shoping-cart-btn-right d-flex align-items-center">
-                    <a href="#" class="view-all-two shoping-btn-2">Update Cart</a>
-                    <a href="#" class="view-all-two shoping-btn-2">Clear All</a>
-                </div>
-              </div>
+                        <div class="shoping-cart-btn-right d-flex align-items-center">
+                            <button type="submit" class="view-all-two shoping-btn-2">Update Cart</button>
+                            <a href="{{ route('cart.clear') }}" class="view-all-two shoping-btn-2 ml-2">Clear All</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
+<!-- SHOPPING-CART-SECTION END -->
 
-<!-- `SHOPPING-CART-SECTION END  -->
-
- 
 <section class="calculate-shipping">
     <div class="container">
         <div class="row">
+            <!-- Calculate Shipping -->
             <div class="col-xl-4 col-md-6 col-sm-12 col-12">
                 <div class="calculate-item">
                     <h5>Calculate Shipping</h5>
-                    <div class="select-item d-flex align-items-center">
-                        <h6>Country:</h6>
-                        <div class="select-wrapper d-flex align-items-center justify-content-between">
-                            <select class="select-option">
-                                <option value="">Select your country </option>
+                    <form action="{{ route('cart.calculate-shipping') }}" method="POST">
+                        @csrf
+                        <div class="select-item d-flex align-items-center">
+                            <h6>Country:</h6>
+                            <select name="country" class="select-option">
+                                <option value="">Select your country</option>
                                 <option value="USA">United States</option>
                                 <option value="UK">United Kingdom</option>
                                 <option value="Canada">Canada</option>
                                 <option value="Australia">Australia</option>
-                              </select>
-                              <span><i class="fa-solid fa-angle-down"></i></span>
+                            </select>
                         </div>
-                    </div>
-                    <div class="select-item d-flex align-items-center">
-                        <h6>State:</h6>
-                        <div class="select-wrapper d-flex align-items-center justify-content-between">
-                            <select class="select-option">
-                                <option value="">Select your State</option>
-                                <option value="USA">United States</option>
-                                <option value="UK">United Kingdom</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Australia">Australia</option>
-                              </select>
-                              <span><i class="fa-solid fa-angle-down"></i></span>
+                        <div class="select-item d-flex align-items-center">
+                            <h6>State:</h6>
+                            <select name="state" class="select-option">
+                                <option value="">Select your state</option>
+                                <option value="NY">New York</option>
+                                <option value="CA">California</option>
+                                <option value="TX">Texas</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="select-item d-flex align-items-center">
-                        <h6>Zip Code:</h6>
-                        <div class="select-wrapper d-flex align-items-center justify-content-between">
-                            <select class="select-option">
-                                <option value="">Write your zip code</option>
-                                <option value="USA">United States</option>
-                                <option value="UK">United Kingdom</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Australia">Australia</option>
-                              </select>
-                              <span><i class="fa-solid fa-angle-down"></i></span>
+                        <div class="select-item d-flex align-items-center">
+                            <h6>Zip Code:</h6>
+                            <input type="text" name="zipcode" placeholder="Enter your zip code" class="form-control">
                         </div>
-                    </div>
-                    <button class="view-all-two shoping-btn-2">Get A Quote</button>
+                        <button type="submit" class="view-all-two shoping-btn-2">Get A Quote</button>
+                    </form>
                 </div>
             </div>
+
+            <!-- Coupon Code -->
             <div class="col-xl-4 col-md-6 col-sm-12 col-12">
                 <div class="calculate-item coupon-code-items">
-                    <h5>Have A Coupon Code ?</h5>
-                    <form>
-                        <input type="text" id="name" name="name" placeholder="Write your Coupon Code">
+                    <h5>Have A Coupon Code?</h5>
+                    <form action="{{ route('cart.apply-coupon') }}" method="POST">
+                        @csrf
+                        <input type="text" name="coupon_code" placeholder="Write your Coupon Code">
+                        <button type="submit" class="view-all-two shoping-btn-2">Apply Code</button>
                     </form>
-                    <button class="view-all-two shoping-btn-2">Apply Code</button>
                 </div>
             </div>
+
+            <!-- Cart Totals -->
             <div class="col-xl-4 col-md-6 col-sm-12 col-12">
                 <div class="calculate-item">
-                    <div class="select-item">
-                        <div class="chectout-cart">
-                            <ul class="sub-total">
-                                <li class="d-flex align-items-center justify-content-between"><h6>Sub Total</h6> <span>$183.00</span></li>
-                                <li class="d-flex align-items-center justify-content-between"><h6>Shipping </h6> <span>$10.00</span></li>
-                            </ul>
-                            <ul class="grand-total">
-                                <li class="d-flex align-items-center justify-content-between"><h6>Grand Total</h6><span>$193.00</span></li>
-                            </ul>
-                            <div class="checkout-text">
-                                <div class="btn_box checkout-btn">
-                                    <a href="#">Proceed To Checkout</a>
-                                </div>
-                                <span >Checkout with multiple address</span>
+                    <div class="chectout-cart">
+                        <ul class="sub-total">
+                            <li class="d-flex align-items-center justify-content-between">
+                                <h6>Sub Total</h6> 
+                                <span>${{ number_format($cartSubTotal, 2) }}</span>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-between">
+                                <h6>Shipping</h6> 
+                                <span>${{ number_format($shippingCost, 2) }}</span>
+                            </li>
+                        </ul>
+                        <ul class="grand-total">
+                            <li class="d-flex align-items-center justify-content-between">
+                                <h6>Grand Total</h6> 
+                                <span>${{ number_format($cartSubTotal + $shippingCost, 2) }}</span>
+                            </li>
+                        </ul>
+                        <div class="checkout-text">
+                            <div class="btn_box checkout-btn">
+                                <a href="{{ route('checkout') }}">Proceed To Checkout</a>
                             </div>
+                            <span>Checkout with multiple addresses</span>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 @endsection
+

@@ -13,7 +13,7 @@ class ShoppingcartController extends Controller
     public function shoppingcart()
     {
         {
-            return view("Frontend.shoppingcart");
+            return view(view: "Frontend.shoppingcart");
     
         }
     }

@@ -18,38 +18,38 @@
         </div>
     </div>
 
-    
-    
+
+
     <!-- Filtter Section Start  -->
     <div class="product-filters text-center mb-7">
         <div class="btn-group filter-group" role="group" aria-label="Filter Products">
-            <button type="button" class="btn btn-outline-light filter-btn active" data-filter="all">All</button>
-            <button type="button" class="btn btn-outline-light filter-btn" data-filter="men">Men</button>
-            <button type="button" class="btn btn-outline-light filter-btn" data-filter="women">Women</button>
+            <button type="button" class="btn btn-outline-dark filter-btn active" data-filter="all">All</button>
+            <button type="button" class="btn btn-outline-dark filter-btn" data-filter="men">Men</button>
+            <button type="button" class="btn btn-outline-dark filter-btn" data-filter="women">Women</button>
         </div>
     </div>
-    
-    
-    <!-- Filtter Section End  -->
-    
-    <!-- `PRODUCT-SECTION START  -->
-   
 
-    
+
+    <!-- Filtter Section End  -->
+
+    <!-- `PRODUCT-SECTION START  -->
+
+
+
 
     <section class="product-section product-section-two product-collection-section">
         <div class="container">
             <div class="product-top d-md-flex align-items-end justify-content-between d-sm-block">
                 <h6></h6>
-                <a href="{{ url('add-new-product') }}" class="view-all-two">Add New Product</a>
+                <a href="{{ url(path: 'add-new-product') }}" class="view-all-two">Add New Product</a>
             </div>
             <div class="product-top d-md-flex align-items-end justify-content-between d-sm-block">
                 <h6>Best Seller’s Collections</h6>
                 <a href="all-{{url('collections')}}" class="view-all-two">View All</a>
             </div>
-             <!-- Add new Product button -->
-   
-    <!-- Add new Product button Ends -->
+            <!-- Add new Product button -->
+
+            <!-- Add new Product button Ends -->
             <div class="products collection-items">
                 <div class="product" data-gender="men">
                     <div class="product-img">
@@ -71,7 +71,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Polo Shirt for Men" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-1.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -97,7 +102,7 @@
                         </a>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Men Grey T-Shirt"
                                         data-image="{{ url('frontend/assets/images/collection/shape-2.png') }}"
@@ -107,7 +112,13 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Men Grey T-Shirt" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-2.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -137,7 +148,7 @@
                         </div>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Girls stylish T-shirt"
                                         data-image="{{ url('frontend/assets/images/collection/shape-3.png') }}"
@@ -147,7 +158,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Girls stylish T-shirt" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-3.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -183,7 +199,12 @@
                                 </li>
 
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Men Formal Shirt" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-4.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -219,7 +240,7 @@
                         </div>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Polo Shirt for Girls"
                                         data-image="{{ url('frontend/assets/images/collection/shape-5.png') }}"
@@ -229,7 +250,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Polo Shirt for Girls" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-5.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -258,7 +284,7 @@
                         </div>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Girls night gown"
                                         data-image="{{ url('frontend/assets/images/collection/shape-6.png') }}"
@@ -268,7 +294,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Girls night gown" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-6.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -294,7 +325,7 @@
                         </a>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Mens stylish T-shirt"
                                         data-image="{{ url('frontend/assets/images/collection/shape-7.png') }}"
@@ -304,7 +335,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Mens stylish T-shirt" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-7.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -333,7 +369,7 @@
                         </div>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Men Semi-Formal Shirt"
                                         data-image="{{ url('frontend/assets/images/collection/shape-8.png') }}"
@@ -343,7 +379,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Men Semi-Formal Shirt" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-8.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -379,7 +420,7 @@
                         </div>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Formal Shirt for Men"
                                         data-image="{{ url('frontend/assets/images/collection/shape-9.png') }}"
@@ -389,7 +430,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Formal Shirt for Men" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-9.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -415,7 +461,7 @@
                         </a>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Girls Casual T-Shirt"
                                         data-image="{{ url('frontend/assets/images/collection/shape-10.png') }}"
@@ -425,7 +471,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Girls Casual T-Shirt" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-10.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -455,7 +506,7 @@
                         </div>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Mens stylish T-shirt"
                                         data-image="{{ url('frontend/assets/images/collection/shape-11.png') }}"
@@ -465,7 +516,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Mens stylish T-shirt" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-11.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -490,7 +546,7 @@
                         </a>
                         <div class="p-option">
                             <ul class="d-flex align-items-center justify-content-end">
-                            <li class="anim-hidden">
+                                <li class="anim-hidden">
                                     <a href="#" class="view-details" data-bs-toggle="modal"
                                         data-bs-target="#productDetailModal" data-title="Men casual Shirt"
                                         data-image="{{ url('frontend/assets/images/collection/shape-12.png') }}"
@@ -500,7 +556,12 @@
                                     </a>
                                 </li>
                                 <li class="anim-hidden"><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li class="anim-hidden"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li class="anim-hidden">
+                                    <a href="#" class="add-to-cart" data-title="Men casual Shirt" data-price="99"
+                                        data-image="{{ url('frontend/assets/images/collection/shape-12.png') }}">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -619,6 +680,35 @@
     </script>
 
     <!-- Product Detail Modal End -->
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartButtons = document.querySelectorAll('.add-to-cart');
+
+        cartButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const title = this.getAttribute('data-title');
+                const price = this.getAttribute('data-price');
+                const image = this.getAttribute('data-image');
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                cart.push({
+                    title: title,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                alert('Product added to cart!');
+            });
+        });
+    });
+</script>
 
 
 

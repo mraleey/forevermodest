@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\VirtualAssistantController;
 use App\Http\Controllers\Frontend\ChatController;
 
 use App\Models\Frontend\ProductModel;  // Import your Product model
+use App\Http\Controllers\OrderController;
 
 Route::get('/search-results', function (Request $request) {
     $query = $request->input('query');
@@ -29,6 +30,8 @@ Route::get('/search-results', function (Request $request) {
     return response()->json($results);
 });
 
+
+
 //Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
@@ -36,7 +39,7 @@ Route::get('/contact', [ContactController::class, 'showContactForm'])->name('con
 Route::post('/contact', [ContactController::class, 'submitContactForm'])->name('contact.submit');
 Route::get('/collection', [CollectionController::class, 'collection'])->name('collection');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
-Route::get('/shoppingcart', [ShoppingcartController::class, 'shoppingcart'])->name('shoppingcart');
+Route::get('/shoppingcart', [ShoppingcartController::class, 'shoppingcart'])->name(name: 'shoppingcart');
 Route::get('/shop-sidebar', [ShopwithsidebarController::class, 'shopwithsidebar'])->name('shopwithsidebar'); // Renamed route
 Route::get('/allcollection', [AllcollectionController::class, 'allcollection'])->name('allcollection');
 Route::get('/wishlist', [WishlistController::class, 'wishlist'])->name('wishlist'); // Fixed duplicate '/checkout'
@@ -47,8 +50,10 @@ Route::post('/signup', [SignupController::class, 'submitMessage'])->name('signup
 Route::get('/single-product', [SingleproductController::class, 'show'])->name('single-product');
 Route::get('/faqs', [FaqController::class, 'index'])->name('faqs');
 Route::get('/virtual-assistant', [VirtualAssistantController::class, 'index'])->name('virtual.assistant');
+Route::get('/thank-you', function () {return view('thank_you');});
 Route::post('/get-response', [ChatController::class, 'getResponse']);
 Route::post('/chatbot', function (Request $request) {
+Route::post('/place-order', [OrderController::class, 'placeOrder']);
     $query = strtolower($request->input('query')); // Get user input
 
     // Predefined responses
