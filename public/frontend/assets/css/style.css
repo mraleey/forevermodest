@@ -8340,31 +8340,4 @@ span.swiper-pagination-bullet {
     font-size: 13px;
   }
   /* UPDATES-SECTION END */
-  
-
-  /* SHOPPING-SECTION START */
-  .filter-group .btn {
-    padding: 10px 20px;
-    margin: 0 5px;
-    border-radius: 30px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.filter-group .btn.active,
-.filter-group .btn:hover {
-    background-color: #111;
-    color: #ccc;
-    border-color: #111;
-}
-
-@media (max-width: 576px) {
-    .filter-group .btn {
-        display: block;
-        width: 100%;
-        margin: 5px 0;
-    }
-}
-
-
 }

@@ -18,6 +18,8 @@
         </div>
     </div>
 
+    
+    
     <!-- Filtter Section Start  -->
     <div class="product-filters text-center mb-7">
         <div class="btn-group filter-group" role="group" aria-label="Filter Products">
@@ -26,18 +28,28 @@
             <button type="button" class="btn btn-outline-light filter-btn" data-filter="women">Women</button>
         </div>
     </div>
-
-
+    
+    
     <!-- Filtter Section End  -->
-
+    
     <!-- `PRODUCT-SECTION START  -->
+   
+
+    
 
     <section class="product-section product-section-two product-collection-section">
         <div class="container">
             <div class="product-top d-md-flex align-items-end justify-content-between d-sm-block">
+                <h6></h6>
+                <a href="{{ url('add-new-product') }}" class="view-all-two">Add New Product</a>
+            </div>
+            <div class="product-top d-md-flex align-items-end justify-content-between d-sm-block">
                 <h6>Best Seller’s Collections</h6>
                 <a href="all-{{url('collections')}}" class="view-all-two">View All</a>
             </div>
+             <!-- Add new Product button -->
+   
+    <!-- Add new Product button Ends -->
             <div class="products collection-items">
                 <div class="product" data-gender="men">
                     <div class="product-img">

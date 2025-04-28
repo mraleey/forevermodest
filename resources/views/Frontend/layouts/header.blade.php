@@ -216,7 +216,7 @@
                                     <div class="view-popup">
                                         <label class="close-btn fas fa-times popup-label"></label>
                                         <h6>Login</h6>
-                                        <form action="{{ route('login.submit') }}" method="POST">
+                                        <form action="{{ route(name: 'login.submit') }}" method="POST">
                                             @csrf
 
                                             <!-- Email Field -->

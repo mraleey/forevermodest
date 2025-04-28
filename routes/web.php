@@ -41,7 +41,7 @@ Route::get('/shop-sidebar', [ShopwithsidebarController::class, 'shopwithsidebar'
 Route::get('/allcollection', [AllcollectionController::class, 'allcollection'])->name('allcollection');
 Route::get('/wishlist', [WishlistController::class, 'wishlist'])->name('wishlist'); // Fixed duplicate '/checkout'
 Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'submitMessage'])->name('login.submit');
+Route::post('/login/submit', [LoginController::class, 'submitMessage'])->name('login.submit');
 Route::get('/signup', [SignupController::class, 'signup'])->name('signup');
 Route::post('/signup', [SignupController::class, 'submitMessage'])->name('signup.submit');
 Route::get('/single-product', [SingleproductController::class, 'show'])->name('single-product');
@@ -83,3 +83,7 @@ Route::post('/chatbot', function (Request $request) {
 // Password Reset Routes
 Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
