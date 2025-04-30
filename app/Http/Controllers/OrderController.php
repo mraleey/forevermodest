@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -26,5 +27,26 @@ class OrderController extends Controller
 
         // Return success response
         return response()->json(['success' => true, 'message' => 'Order placed successfully.']);
+    }
+
+    public function index()
+    {
+        $orders = Order::with('items')->orderByDesc('created_at')->get();
+        return view('products.index', compact('orders'));
+    }
+
+    public function show($id)
+    {
+        $order = Order::with('items')->findOrFail($id);
+        return view('products.show', compact('order'));
+    }
+
+    public function destroy($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->items()->delete(); // Delete order items first
+        $order->delete();
+
+        return redirect()->route('view.orders')->with('success', 'Order deleted successfully.');
     }
 }

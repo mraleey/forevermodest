@@ -9,23 +9,24 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('contact', function (Blueprint $table) {
+        Schema::create('liked_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->default('null');
-            $table->string('email')->default('null');
-            $table->string('number')->nullable(); // Removed 'after' clause
-            $table->text('message')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+    
+            $table->unique(['user_id', 'product_id']); // prevent duplicates
         });
     }
+    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('contact');
+        Schema::dropIfExists('liked_products');
     }
 };

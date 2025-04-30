@@ -7,8 +7,9 @@ use App\Http\Controllers\Frontend\SignupController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\ShoppingcartController;
-use App\Http\Controllers\Frontend\CollectionController;
-use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\CollectionController;
+// use App\Http\Controllers\Frontend\CollectionController;
+// use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\AllcollectionController;
 use App\Http\Controllers\Frontend\ShopwithsidebarController;
 use App\Http\Controllers\Frontend\WishlistController;
@@ -20,16 +21,53 @@ use App\Http\Controllers\Frontend\ChatController;
 
 use App\Models\Frontend\ProductModel;  // Import your Product model
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\LikedProductController;
+use App\Http\Controllers\CheckoutController;
 
-Route::get('/search-results', function (Request $request) {
-    $query = $request->input('query');
+// Route::get('/search-results', function (Request $request) {
+//     $query = $request->input('query');
 
-    // Fetch matching products
-    $results = ProductModel::where('name', 'LIKE', "%$query%")->get();
+//     // Fetch matching products
+//     $results = ProductModel::where('name', 'LIKE', "%$query%")->get();
 
-    return response()->json($results);
+//     return response()->json($results);
+// });
+
+Route::get('/collections', [CollectionController::class, 'index'])->name('collections.index');
+
+
+Route::get('/collection', [ProductController::class, 'collection'])->name('collections.index');
+Route::get('/collection/create', [ProductController::class, 'create'])->name('collections.create');
+Route::post('/collection/store', [ProductController::class, 'store'])->name('collections.store');
+Route::get('/collections/create', [ProductController::class, 'create'])->name('collections.create');
+Route::post('/collections', [ProductController::class, 'store'])->name('collections.store');
+Route::get('/collections', [ProductController::class, 'index'])->name('collections.index');
+Route::get('/collections/{id}', [CollectionController::class, 'show'])->name('collections.show');
+
+
+// Cart
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'view'])->name('cart.view');
+Route::post('/cart/increment/{id}', [CartController::class, 'increment'])->name('cart.increment');
+Route::post('/cart/decrement/{id}', [CartController::class, 'decrement'])->name('cart.decrement');
+
+//CheckOut
+Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout');
+Route::post('/checkout/submit', [CheckoutController::class, 'submitCheckout'])->name('checkout.submit');
+Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+
+
+//Orders
+Route::get('/orders', [OrderController::class, 'index'])->name('view.orders');
+Route::get('/orders/{id}', [OrderController::class, 'show'])->name('view.orders.show');
+Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('view.orders.delete');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/liked-products', [LikedProductController::class, 'index'])->name('liked-products.index');
+    Route::post('/liked-products/{productId}', [LikedProductController::class, 'store'])->name('liked-products.store');
 });
-
 
 
 //Frontend Routes
@@ -38,6 +76,7 @@ Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submitContactForm'])->name('contact.submit');
 Route::get('/collection', [CollectionController::class, 'collection'])->name('collection');
+Route::get('/collection', [ProductController::class, 'collection'])->name('collection');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::get('/shoppingcart', [ShoppingcartController::class, 'shoppingcart'])->name(name: 'shoppingcart');
 Route::get('/shop-sidebar', [ShopwithsidebarController::class, 'shopwithsidebar'])->name('shopwithsidebar'); // Renamed route
@@ -50,10 +89,12 @@ Route::post('/signup', [SignupController::class, 'submitMessage'])->name('signup
 Route::get('/single-product', [SingleproductController::class, 'show'])->name('single-product');
 Route::get('/faqs', [FaqController::class, 'index'])->name('faqs');
 Route::get('/virtual-assistant', [VirtualAssistantController::class, 'index'])->name('virtual.assistant');
-Route::get('/thank-you', function () {return view('thank_you');});
+Route::get('/thank-you', function () {
+    return view('thank_you');
+});
 Route::post('/get-response', [ChatController::class, 'getResponse']);
 Route::post('/chatbot', function (Request $request) {
-Route::post('/place-order', [OrderController::class, 'placeOrder']);
+    Route::post('/place-order', [OrderController::class, 'placeOrder']);
     $query = strtolower($request->input('query')); // Get user input
 
     // Predefined responses
@@ -78,7 +119,7 @@ Route::post('/place-order', [OrderController::class, 'placeOrder']);
         "do you provide warranty on products" => "Yes, most of our products come with a 1-year manufacturer warranty.",
         "can i exchange an item instead of returning it" => "Yes, exchanges are available for eligible items within 30 days."
     ];
-    
+
 
     // Find response or return default
     $reply = $responses[$query] ?? $responses["default"];

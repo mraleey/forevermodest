@@ -181,15 +181,17 @@
                             }
                         }
                     </style>
-
                     <div class="forevermodest-search-form">
-                        <form class="search-product" id="search-product" action="{{url('single-product')}}"
-                            method="GET">
-                            <input type="text" name="query" placeholder="Search for products...">
-                            <button type="submit">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
+
+
+
+                        <form class="search-product" action="{{ route('collections.index') }}" method="GET">
+                            <input type="text" name="search" id="search-input" value="{{ request('search') }}"
+                                placeholder="Search for products...">
+
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
+
                     </div>
 
                     <div class="inner-wrapper">
@@ -346,13 +348,13 @@
                             <li class="product-cart">
                                 <a href="#" class="cart-icon" id="toggleButton">
                                     <i class="fa-solid fa-cart-shopping"></i>
-                                    <span class="cart-number">0</span>
+                                    <span class="cart-number" id="cart-count">0</span>
                                 </a>
 
                                 <div class="view-cart content" id="content">
                                     <div class="cart-title d-flex align-items-center justify-content-between">
-                                        <span class="product-item">0 ITEM</span>
-                                        <a href="{{ url('shopping-cart') }}"></a>
+                                        <span class="product-item" id="cart-item-count">0 ITEM</span>
+                                      
                                     </div>
 
                                     <div id="cart-items">
@@ -364,34 +366,10 @@
                                         <span id="subtotal-amount">$0.00</span>
                                     </div>
 
-                                  <!-- Checkout Button -->
-<div class="popup-btn">
-    <a href="#" class="popup-link" onclick="openCheckoutModal()">Checkout</a>
-</div>
-
-<!-- Checkout Modal (Hidden by default) -->
-<div id="checkoutModal" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); background: white; border-radius: 10px; width: 500px; padding: 20px; box-shadow: 0px 5px 15px rgba(0,0,0,0.3); z-index: 9999;">
-    <h2 style="text-align:center;">Your Cart Summary</h2>
-    <hr>
-
-    <div id="cartItems"></div>
-
-    <hr>
-    <div style="display:flex; justify-content: space-between; font-weight: bold;">
-        <div>Total Amount:</div>
-        <div id="totalAmount">$0</div>
-    </div>
-
-    <div style="text-align:center; margin-top: 20px;">
-        <button onclick="proceedToPayment()" style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Proceed to Payment</button>
-        <br><br>
-        <button onclick="closeCheckoutModal()" style="background: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 5px;">Close</button>
-    </div>
-</div>
-
-<!-- Modal Background -->
-<div id="modalBackground" style="display:none; position: fixed; top: 0; left: 0; height:100%; width:100%; background: rgba(0,0,0,0.5); z-index: 9998;" onclick="closeCheckoutModal()"></div>
-
+                                    <!-- View Cart Button -->
+                                    <div class="popup-btn">
+                                        <a href="{{ route('cart.view') }}" class="popup-link">Go to Cart</a>
+                                    </div>
                                 </div>
                             </li>
 
@@ -424,56 +402,56 @@
                                             <div class="list-item">
                                                 <h4 class="title">Men's Fashion</h4>
                                                 <ul>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Men's T-Shirt</a>
+                                                    <li><a href="{{ route('collection') }}">Men's T-Shirt</a>
                                                     </li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Men's Suit</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Casual Shirts</a>
+                                                    <li><a href="{{ route('collection') }}">Men's Suit</a></li>
+                                                    <li><a href="{{ route('collection') }}">Casual Shirts</a>
                                                     </li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Men's Jeans</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Men's shoes</a></li>
+                                                    <li><a href="{{ route('collection') }}">Men's Jeans</a></li>
+                                                    <li><a href="{{ route('collection') }}">Men's shoes</a></li>
                                                 </ul>
                                                 <h4 class="title">Men's Beauty</h4>
                                                 <ul>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Face Care</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Hair care</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Body care</a></li>
+                                                    <li><a href="{{ route('collection') }}">Face Care</a></li>
+                                                    <li><a href="{{ route('collection') }}">Hair care</a></li>
+                                                    <li><a href="{{ route('collection') }}">Body care</a></li>
                                                 </ul>
                                             </div>
                                             <div class="list-item">
                                                 <h4 class="title">Women's Fashion</h4>
                                                 <ul>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Night Gown</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Soft Towel</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Fashion Dress</a>
+                                                    <li><a href="{{ route('collection') }}">Night Gown</a></li>
+                                                    <li><a href="{{ route('collection') }}">Soft Towel</a></li>
+                                                    <li><a href="{{ route('collection') }}">Fashion Dress</a>
                                                     </li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Women's Bag</a></li>
+                                                    <li><a href="{{ route('collection') }}">Women's Bag</a></li>
                                                 </ul>
                                                 <h4 class="title">Women's Beauty</h4>
                                                 <ul>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Face Care</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Lip Make-up</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Hand care</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Cross-body Bags</a>
+                                                    <li><a href="{{ route('collection') }}">Face Care</a></li>
+                                                    <li><a href="{{ route('collection') }}">Lip Make-up</a></li>
+                                                    <li><a href="{{ route('collection') }}">Hand care</a></li>
+                                                    <li><a href="{{ route('collection') }}">Cross-body Bags</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="list-item">
                                                 <h4 class="title">Home, Kitchen</h4>
                                                 <ul>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Kitchen
+                                                    <li><a href="{{ route('collection') }}">Kitchen
                                                             Appliances</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Lights &
+                                                    <li><a href="{{ route('collection') }}">Lights &
                                                             Electrical</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Basket & Bucket</a>
+                                                    <li><a href="{{ route('collection') }}">Basket & Bucket</a>
                                                     </li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Kitchen
+                                                    <li><a href="{{ route('collection') }}">Kitchen
                                                             Accessories</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Box & Container</a>
+                                                    <li><a href="{{ route('collection') }}">Box & Container</a>
                                                     </li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Disposables</a></li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Rack & Organizer</a>
+                                                    <li><a href="{{ route('collection') }}">Disposables</a></li>
+                                                    <li><a href="{{ route('collection') }}">Rack & Organizer</a>
                                                     </li>
-                                                    <li><a href="{{ route('shopwithsidebar') }}">Gardening</a></li>
+                                                    <li><a href="{{ route('collection') }}">Gardening</a></li>
                                                 </ul>
                                             </div>
                                             <div class="list-item">
@@ -483,35 +461,35 @@
                                         </div>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="{{ url('collection') }}" class="nav-link">Collections <i
+                                        <a href="{{ url('collections') }}" class="nav-link">Collections <i
                                                 class="fa fa-angle-down"></i></a>
                                         <div class="sub-menu mega-menu mega-menu-column-4">
                                             <div class="list-item text-center">
                                                 <a href="{{ url('collection') }}">
                                                     <img src="{{ url('frontend/assets/images/header/collection/shape-1.png') }}"
                                                         alt="header">
-                                                    <h4 class="title">Men's T-Shirt</h4>
+                                                    <h4 class="title">Men's Section</h4>
                                                 </a>
                                             </div>
                                             <div class="list-item text-center">
                                                 <a href="{{ url('collection') }}">
                                                     <img src="{{ url('frontend/assets/images/header/collection/shape-2.png') }}"
                                                         alt="header">
-                                                    <h4 class="title">Women's Bag</h4>
+                                                    <h4 class="title">Women's Section</h4>
                                                 </a>
                                             </div>
                                             <div class="list-item text-center">
                                                 <a href="{{ url('collection') }}">
-                                                    <img src="{{ url('frontend/assets/images/header/collection/shape-3.png') }}"
+                                                    <img src="{{ url('frontend/assets/images/header/collection/kids.jpg') }}"
                                                         alt="header">
-                                                    <h4 class="title">Ball Gown</h4>
+                                                    <h4 class="title">Kid's Section</h4>
                                                 </a>
                                             </div>
                                             <div class="list-item text-center">
                                                 <a href="{{ url('collection') }}">
-                                                    <img src="{{ url('frontend/assets/images/header/collection/shape-4.png') }}"
+                                                    <img src="{{ url('frontend/assets/images/header/collection/accessories.jpeg') }}"
                                                         alt="header">
-                                                    <h4 class="title">Night Gown</h4>
+                                                    <h4 class="title">Accessories Section</h4>
                                                 </a>
                                             </div>
                                         </div>
@@ -540,22 +518,22 @@
     <script>
 
 
-    function updateCartUI() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartItemsContainer = document.getElementById('cart-items');
-        const cartNumber = document.querySelector('.cart-number');
-        const subtotalAmount = document.getElementById('subtotal-amount');
-        const cartTitleItem = document.querySelector('.cart-title .product-item');
+        function updateCartUI() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartNumber = document.querySelector('.cart-number');
+            const subtotalAmount = document.getElementById('subtotal-amount');
+            const cartTitleItem = document.querySelector('.cart-title .product-item');
 
-        cartItemsContainer.innerHTML = '';
-        let subtotal = 0;
+            cartItemsContainer.innerHTML = '';
+            let subtotal = 0;
 
-        cart.forEach((item, index) => {
-            subtotal += parseFloat(item.price) * item.quantity;
+            cart.forEach((item, index) => {
+                subtotal += parseFloat(item.price) * item.quantity;
 
-            const productItem = document.createElement('div');
-            productItem.classList.add('product-item', 'd-flex', 'justify-content-between');
-            productItem.innerHTML = `
+                const productItem = document.createElement('div');
+                productItem.classList.add('product-item', 'd-flex', 'justify-content-between');
+                productItem.innerHTML = `
                 <div class="product-inner">
                     <a href="#" class="d-block">${item.title}</a>
                     <span>${item.quantity} * $${item.price}</span>
@@ -568,74 +546,74 @@
                 </div>
             `;
 
-            cartItemsContainer.appendChild(productItem);
+                cartItemsContainer.appendChild(productItem);
+            });
+
+            cartNumber.innerText = cart.length;
+            subtotalAmount.innerText = `$${subtotal.toFixed(2)}`;
+            cartTitleItem.innerText = `${cart.length} ITEM${cart.length !== 1 ? 'S' : ''}`;
+        }
+
+        function removeCartItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        // Update cart UI when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartUI();
         });
+    </script>
 
-        cartNumber.innerText = cart.length;
-        subtotalAmount.innerText = `$${subtotal.toFixed(2)}`;
-        cartTitleItem.innerText = `${cart.length} ITEM${cart.length !== 1 ? 'S' : ''}`;
-    }
+    <script>
+        function increment(id) {
+            var input = document.getElementById('quantity' + id);
+            input.value = parseInt(input.value) + 1;
+        }
 
-    function removeCartItem(index) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartUI();
-    }
+        function decrement(id) {
+            var input = document.getElementById('quantity' + id);
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+    </script>
 
-    // Update cart UI when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCartUI();
-    });
-</script>
+    <script>
+        // Simulated Cart Data (Later you can load this dynamically from your session or backend)
+        const cart = [
+            { id: 1, name: "Product 1", price: 29.99, quantity: 2 },
+            { id: 2, name: "Product 2", price: 19.99, quantity: 1 },
+            { id: 3, name: "Product 3", price: 9.99, quantity: 3 },
+        ];
 
-<script>
-function increment(id) {
-    var input = document.getElementById('quantity' + id);
-    input.value = parseInt(input.value) + 1;
-}
+        // Open Checkout Modal
+        function openCheckoutModal() {
+            renderCartItems();
+            document.getElementById('checkoutModal').style.display = 'block';
+            document.getElementById('modalBackground').style.display = 'block';
+        }
 
-function decrement(id) {
-    var input = document.getElementById('quantity' + id);
-    if (parseInt(input.value) > 1) {
-        input.value = parseInt(input.value) - 1;
-    }
-}
-</script>
+        // Close Checkout Modal
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+            document.getElementById('modalBackground').style.display = 'none';
+        }
 
-<script>
-// Simulated Cart Data (Later you can load this dynamically from your session or backend)
-const cart = [
-    { id: 1, name: "Product 1", price: 29.99, quantity: 2 },
-    { id: 2, name: "Product 2", price: 19.99, quantity: 1 },
-    { id: 3, name: "Product 3", price: 9.99, quantity: 3 },
-];
+        // Render Cart Items in Modal
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            cartItemsContainer.innerHTML = '';
 
-// Open Checkout Modal
-function openCheckoutModal() {
-    renderCartItems();
-    document.getElementById('checkoutModal').style.display = 'block';
-    document.getElementById('modalBackground').style.display = 'block';
-}
+            let total = 0;
 
-// Close Checkout Modal
-function closeCheckoutModal() {
-    document.getElementById('checkoutModal').style.display = 'none';
-    document.getElementById('modalBackground').style.display = 'none';
-}
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
 
-// Render Cart Items in Modal
-function renderCartItems() {
-    const cartItemsContainer = document.getElementById('cartItems');
-    cartItemsContainer.innerHTML = '';
-
-    let total = 0;
-
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-
-        cartItemsContainer.innerHTML += `
+                cartItemsContainer.innerHTML += `
             <div style="display:flex; justify-content:space-between; margin:10px 0;">
                 <div>
                     <strong>${item.name}</strong><br>
@@ -647,63 +625,129 @@ function renderCartItems() {
                 </div>
             </div>
         `;
-    });
+            });
 
-    document.getElementById('totalAmount').innerText = `$${total.toFixed(2)}`;
-}
+            document.getElementById('totalAmount').innerText = `$${total.toFixed(2)}`;
+        }
 
-// Proceed to Payment (Example function)
-function proceedToPayment() {
-    // Confirm with the user
-    if (confirm('Are you sure you want to place the order with Cash on Delivery?')) {
+        // Proceed to Payment (Example function)
+        function proceedToPayment() {
+            // Confirm with the user
+            if (confirm('Are you sure you want to place the order with Cash on Delivery?')) {
 
-        // Prepare the order data
-        const orderData = {
-            payment_method: 'cash_on_delivery',
-            cart: cart, // cart array from earlier
-            total_amount: calculateTotalAmount(),
-        };
+                // Prepare the order data
+                const orderData = {
+                    payment_method: 'cash_on_delivery',
+                    cart: cart, // cart array from earlier
+                    total_amount: calculateTotalAmount(),
+                };
 
-        // Send the order to server using AJAX (fetch)
-        fetch('/place-order', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': getCSRFToken(), // important in Laravel
-            },
-            body: JSON.stringify(orderData),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Order placed successfully!');
-                // Redirect to thank you page
-                window.location.href = '/thank-you';
+                // Send the order to server using AJAX (fetch)
+                fetch('/place-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': getCSRFToken(), // important in Laravel
+                    },
+                    body: JSON.stringify(orderData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Order placed successfully!');
+                            // Redirect to thank you page
+                            window.location.href = '/thank-you';
+                        } else {
+                            alert('Something went wrong: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error placing order:', error);
+                        alert('An error occurred while placing the order.');
+                    });
+
             } else {
-                alert('Something went wrong: ' + data.message);
+                alert('Order cancelled.');
             }
-        })
-        .catch(error => {
-            console.error('Error placing order:', error);
-            alert('An error occurred while placing the order.');
+        }
+
+        // Helper function to calculate total amount
+        function calculateTotalAmount() {
+            return cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2);
+        }
+
+        // Helper function to get CSRF Token (important for Laravel POST)
+        function getCSRFToken() {
+            return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        }
+
+    </script>
+
+    <!-- Search Method -->
+    <script>
+        document.getElementById("search-input").addEventListener("keyup", function () {
+            var query = this.value.toLowerCase();
+            var cards = document.querySelectorAll(".product-card");
+
+            cards.forEach(function (card) {
+                var name = card.querySelector("h4").textContent.toLowerCase();
+                if (name.includes(query)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
         });
+    </script>
 
-    } else {
-        alert('Order cancelled.');
-    }
-}
 
-// Helper function to calculate total amount
-function calculateTotalAmount() {
-    return cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2);
-}
+    <script>
+        // Assuming cart data is available in a JavaScript object, e.g., from a session or API.
+        const cartItems = [
+            // Example cart items structure
+            { name: 'Product 1', price: 25.99, quantity: 2, image: 'path/to/product1.jpg' },
+            { name: 'Product 2', price: 15.50, quantity: 1, image: 'path/to/product2.jpg' },
+            // More items here...
+        ];
 
-// Helper function to get CSRF Token (important for Laravel POST)
-function getCSRFToken() {
-    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-}
+        // Function to update the cart display
+        function updateCart() {
+            const cartCountElement = document.getElementById('cart-count');
+            const cartItemCountElement = document.getElementById('cart-item-count');
+            const cartItemsElement = document.getElementById('cart-items');
+            const subtotalElement = document.getElementById('subtotal-amount');
 
-</script>
+            let cartHtml = '';
+            let totalAmount = 0;
+            let itemCount = 0;
+
+            cartItems.forEach(item => {
+                cartHtml += `
+                <div class="cart-item d-flex justify-content-between">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image" />
+                    <div class="cart-item-details">
+                        <span class="cart-item-name">${item.name}</span>
+                        <span class="cart-item-quantity">Quantity: ${item.quantity}</span>
+                    </div>
+                    <div class="cart-item-price">
+                        $${(item.price * item.quantity).toFixed(2)}
+                    </div>
+                </div>
+            `;
+                totalAmount += item.price * item.quantity;
+                itemCount += item.quantity;
+            });
+
+            cartItemsElement.innerHTML = cartHtml;
+            cartItemCountElement.textContent = `${itemCount} ITEM${itemCount !== 1 ? 'S' : ''}`;
+            cartCountElement.textContent = itemCount;
+            subtotalElement.textContent = `$${totalAmount.toFixed(2)}`;
+        }
+
+        // Call the updateCart function on page load to populate cart
+        updateCart();
+    </script>
+
 
 
     <!-- HEADER-SECTION END  -->

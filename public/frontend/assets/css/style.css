@@ -8339,5 +8339,28 @@ span.swiper-pagination-bullet {
   .updates-section .get-update .update-form .update-btn {
     font-size: 13px;
   }
+
+  .sub-menu.mega-menu-column-4 .list-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 250px; /* You can adjust this value to set the desired height */
+    width: 200px;  /* You can adjust this value to set the desired width */
+}
+
+.sub-menu.mega-menu-column-4 .list-item img {
+    width: 100%;
+    height: auto;
+    max-height: 150px; /* Control the height of the image */
+    object-fit: cover;  /* Ensures images maintain aspect ratio without distortion */
+}
+
+.sub-menu.mega-menu-column-4 .list-item h4.title {
+    margin-top: 10px; /* Spacing between the image and title */
+    font-size: 16px; /* You can adjust the font size as needed */
+}
+
   /* UPDATES-SECTION END */
 }
