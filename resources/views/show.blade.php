@@ -38,9 +38,39 @@
             </p>
             <p>{{ $product->description }}</p>
 
-            <button class="btn btn-success add-to-cart" data-id="{{ $product->id }}">
-                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
-            </button>
+            <button class="btn btn-success add-to-cart px-4 py-2 rounded-pill shadow-sm d-flex align-items-center" data-id="{{ $product->id }}">
+    <i class="fa-solid fa-cart-shopping me-2"></i> 
+    <span>Add to Cart</span>
+</button>
+
+<style>
+    .btn-success.add-to-cart {
+        background-color: #28a745;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-success.add-to-cart:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-success.add-to-cart:active {
+        background-color: #1e7e34;
+        transform: scale(0.98);
+    }
+
+    .btn-success.add-to-cart i {
+        font-size: 18px;
+    }
+
+    .btn-success.add-to-cart span {
+        font-size: 16px;
+    }
+</style>
         </div>
     </div>
 </div>

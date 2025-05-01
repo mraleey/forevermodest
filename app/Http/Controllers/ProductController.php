@@ -20,8 +20,7 @@ class ProductController extends Controller
         }
 
         return view('collection', compact('collections'));
-    }
-    
+    }    
 
 
     public function create()
@@ -75,6 +74,7 @@ class ProductController extends Controller
         $collections = $query->paginate(12)->appends($request->query());
     
         return view('collection', compact('collections'));
-    }
 
+        
+    }
 }

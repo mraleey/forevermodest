@@ -39,13 +39,14 @@ Route::get('/collections', [CollectionController::class, 'index'])->name('collec
 
 
 Route::get('/collection', [ProductController::class, 'collection'])->name('collections.index');
-Route::get('/collection/create', [ProductController::class, 'create'])->name('collections.create');
+Route::get('/collection/create/Password', [ProductController::class, 'create'])->name('collections.create');
 Route::post('/collection/store', [ProductController::class, 'store'])->name('collections.store');
 Route::get('/collections/create', [ProductController::class, 'create'])->name('collections.create');
 Route::post('/collections', [ProductController::class, 'store'])->name('collections.store');
 Route::get('/collections', [ProductController::class, 'index'])->name('collections.index');
 Route::get('/collections/{id}', [CollectionController::class, 'show'])->name('collections.show');
 
+Route::get('/single-product', [CollectionController::class, 'single_product'])->name('single-product');
 
 // Cart
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
@@ -60,7 +61,7 @@ Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('c
 
 
 //Orders
-Route::get('/orders', [OrderController::class, 'index'])->name('view.orders');
+Route::get('/orders/Password', [OrderController::class, 'index'])->name('view.orders');
 Route::get('/orders/{id}', [OrderController::class, 'show'])->name('view.orders.show');
 Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('view.orders.delete');
 
